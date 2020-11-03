@@ -1,0 +1,38 @@
+#disttribution
+#uniform Distribution
+X<-runif(400) #generating 400 uniform random number
+par(mfrow=c(1,2))
+plot(x)
+hist(x)
+
+
+#normal Distribution
+X<-rnormal(100,50,10) #generting 100 normal random no. with mu=50(arithematic mean) and sigma=10(standard deviation)
+par(mfrow=c(1,1))
+hist(x, probability = TRUE) # plotting emprical probabuibilties
+mean(x) #Estimating mean
+sd(x) #estimating standard deviation
+lines(density(x), col="blue") #adding a line of empirical density
+xnew<-seq(min(x),max(x),length=100)
+#addding a line of normal densitie with estimated mean n standard deviation from x
+lines(xnew,dnorm(xnew,mean(x),sd(x)),col="red")
+
+
+#lognormal distribution
+#generting 1000 log noral number with log mean of 0, and  logmean of 0.5
+x<-rlnorm(1000,meanlog = 0,sdlog = 0.5)
+hist(x, probability = TRUE)
+xnew<-seq(min(x),max(x),length=100)
+#adding a line of 100 no. from xnew, calculating for these the density values, with estimated 
+#means and standard deviation for sample (x)
+lines(xnew,dlnorm(xnew,meanlog = mean(log(x)),sdlog = sd(log(x))), col="red")
+
+mean(x)
+sd(x)
+#transformation to normal distribution
+mean(log(x)) #mean value of o[parent  normal distribution
+sd(log(x)) #mstandard deiation  of of parent  normal distribution
+
+hist(log(x), probability = TRUE) #plottting parent distribution
+xnew<-seq(log(min(x)), log(max(x)), length=100)
+lines(xnew,dnorm(xnew,mean=mean(log(x)),sd=sd(log(x))), col="red")
